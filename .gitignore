@@ -128,3 +128,6 @@ dmypy.json
 # Pyre type checker
 .pyre/
 wranglers/node_modules/
+
+#development branch
+**/credintials.py
