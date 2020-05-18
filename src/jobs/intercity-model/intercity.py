@@ -8,34 +8,28 @@ import shapefile as shp
 import seaborn as sns
 import matplotlib
 import datetime
-from pyspark import SparkContext, SparkConf
+
+from pyspark import *
+from pyspark.sql import *
+from graphframes import *
 
 from dataloader.dataloader import sessionManager, Nodes, Weights
+from dataloader.parameters import get_parameters
+
+
+
+class Network():
+    def __init__(self, session, nodes, edges):
+
+        sqlContext = SQLContext(sc)
+        nodes_df = sqlContext.createDataFrame(nodes)
+        edges_df = sqlContext.createDataFrame(edges) 
+        self.graph = GraphFrame(nodes_df, edges_df)
 
 class diseasespread():
     """parameters for the model"""
-    def __init__(self, nodes_df, weights_df, nc_tau=1, nc_M=1, sigma=25, alpha=0.1, beta=0.01, theta=10, a=4.0, b=3.0): #one needs to find a good paramter such that ODEs become solvable, and yield physically reliable solutions
-        self.elist=elist
-        self.nlist=nlist
-        self.label=label
-        self.pop_density = pop_density
-        self.healthcare = healthcare
-        self.weights=weights.get_dist()
-        self.nc_tau = nc_tau
-        self.nc_M = nc_M
-        self.graph=nx.Graph()
-        self.graph.add_edges_from(self.elist)
-        self.graph.add_nodes_from(self.nlist)
-        self.pop_density = pop_density
-        self.healthcare = healthcare
-        self.theta=theta
-        self.beta=beta
-        self.alpha=alpha
-        self.sigma=sigma
-        self.a=a
-        self.b=b
-        self.firstpart = []
-        self.secondpart = []
+    def __init__(self, graph, parameters): #one needs to find a good paramter such that ODEs become solvable, and yield physically reliable solutions
+        data = 0
 
     def tau(self, node):
         return(self.nc_tau*14*self.healthcare[node])
@@ -96,13 +90,19 @@ class diseasespread():
         return dxdt
 
 if __name__ == "__main__":
+
+    sc = SparkContext("local", "intercity model")
+
     AuthToken = sessionManager()
     
     #create an object of Nodes
     nodeobject = Nodes(AuthToken.get_token())
     nodes_df = nodeobject.nodes()
-
     N = len(nodes_df)
+    x0 = np.zeros(N)
+    x0[0] = 0.1
+    nodes_df["x0"] = x0
+
 
     weights = Weights(AuthToken.get_token(), nodeobject.get_index())
     weights_df = weights.weights()
@@ -110,16 +110,24 @@ if __name__ == "__main__":
     space = [1]
     assert N == len(nodes_df)
 
-    # taulist=np.ones(N)*5 #keep identical healing rates for all the nodes
-    x0=np.ones(N)*0 #at t=0, all other cities are normal
-    x0[24]=0.1 #at t=0, Kathmandu is diseased
+    network = Network(sc, nodes_df, weights_df)
+    graph_rdd = network.graph
+    print(graph_rdd.vertices.show())
+
+
+    parameters_rdd = sc.parallelize(get_parameters())
+
+
+    # # taulist=np.ones(N)*5 #keep identical healing rates for all the nodes
+    # x0=np.ones(N)*0 #at t=0, all other cities are normal
+    # x0[24]=0.1 #at t=0, Kathmandu is diseased
     
-    samples=100
-    simuwindow=100 #the evolution is distinctly observed at longer times, so keep the simulation window large
+    # samples=100
+    # simuwindow=100 #the evolution is distinctly observed at longer times, so keep the simulation window large
     
-    for i in space:
+    # for i in space:
         
-        print("normalization tau = "+str(10)+", M = "+str(i))
-        spread=diseasespread(nodes_df,weights_df,nc_tau=i,nc_M=i)
-        t=np.linspace(0,simuwindow,samples)
-        xt=odeint(spread.evolve,x0,t)
+    #     print("normalization tau = "+str(10)+", M = "+str(i))
+    #     spread=diseasespread(nodes_df,weights_df,nc_tau=i,nc_M=i)
+    #     t=np.linspace(0,simuwindow,samples)
+    #     xt=odeint(spread.evolve,x0,t)

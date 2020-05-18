@@ -3,7 +3,8 @@ import numpy as np
 import pandas as pd
 import json
 
-from credintials import URL, UserName, Password
+from dataloader.credintials import URL, UserName, Password
+# from credintials import URL, UserName, Password
 
 class sessionManager():
     def __init__(self):
@@ -37,7 +38,27 @@ class Nodes(object):
 
         response_json = json.loads(response.text.encode('utf8'))
 
-        self.nodes_df = pd.json_normalize(response_json["districts"]).set_index("index")
+        self.nodes_df = pd.json_normalize(response_json["districts"])
+        self.health_data(AuthToken)
+        self.nodes_df.rename({"index":"id"}, axis=1, inplace=True)
+
+    def health_data(self, AuthToken):
+        url = URL+"covidsimteam/provinces"
+        cookie = dict(AuthSession=AuthToken)
+        headers = {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'X-CouchDB-WWW-Authenticate': 'Cookie'
+        }
+        response = requests.request("GET", url, headers=headers, cookies=cookie)
+        
+        response_json = json.loads(response.text.encode('utf8'))
+        health_df = pd.json_normalize(response_json["provinces"])
+    
+        health_data = []
+        for _,v in self.nodes_df.iterrows():
+            province = str(v["province"])
+            health_data.append(float(health_df.loc[(health_df["Name of Government Unit"]=="Province "+province)]["Index"]))
+        self.nodes_df["health_index"] = health_data
 
     def nodes(self):
         return self.nodes_df
@@ -71,10 +92,10 @@ class Weights():
         for i in range(N):
             for j in range(N):
                 if not i == j:
-                    weightdict[index] = [(i,j),weights_json[indexlabeldict[i]][indexlabeldict[j]]]
+                    weightdict[index] = [i,j,weights_json[indexlabeldict[i]][indexlabeldict[j]]]
                     index += 1
 
-        self.weights_df = pd.DataFrame.from_dict(weightdict, orient="index", columns=["Label","Weight"])
+        self.weights_df = pd.DataFrame.from_dict(weightdict, orient="index", columns=["src","dst","Weight"])
         self.weights_df["Weight"] /= self.weights_df["Weight"].max()
 
     def weights(self):
