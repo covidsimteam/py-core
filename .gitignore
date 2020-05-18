@@ -128,3 +128,5 @@ dmypy.json
 # Pyre type checker
 .pyre/
 wranglers/node_modules/
+
+src/jobs/intercity-model/dataloader/credintials.py
