@@ -130,3 +130,6 @@ dmypy.json
 wranglers/node_modules/
 
 src/jobs/intercity-model/dataloader/credintials.py
+
+#development branch
+**/credintials.py
