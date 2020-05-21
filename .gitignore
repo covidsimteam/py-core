@@ -133,6 +133,8 @@ src/jobs/intercity-model/dataloader/credintials.py
 
 #development branch
 **/credintials.py
+**/graphf.py
+**/Untitled.ipynb
 
 # intercity
 **/__pycache__/
