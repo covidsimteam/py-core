@@ -24,6 +24,12 @@ from data_loader.parameters import get_parameters
 # from data_loader.plot_map import plot_map
 # from data_loader.make_folium import make_folium
 
+import myargparse as argparse
+
+parser = argparse.MyArgumentParser(description='infects node')
+parser.add_argument('-nodeinfect',default=6,type=int,help='nodeinfect')
+args = parser.parse_args()
+
 class diseasespread():
     """parameters for the model"""
     def __init__(self, nodes, weights, parameters): #one needs to find a good paramter such that ODEs become solvable, and yield physically reliable solutions
@@ -110,7 +116,10 @@ if __name__ == "__main__":
     nodes_df = nodeobject.nodes()
     N = len(nodes_df)
     x0 = np.zeros(N)
-    x0[0] = 0.1
+
+    assert args.nodeinfect < N+1
+    x0[args.nodeinfect]=0.1 #at t=0 some city is diseased
+    print("For node: ", args.nodeinfect)
     nodes_df["x0"] = x0
 
 
@@ -134,7 +143,7 @@ if __name__ == "__main__":
     results = nodes_df
     for day in range(simuwindow):
         results["x"+str(day)] = xt[day]
-    print(results.head(10))
+    # print(results.head(10))
 
     #submit code here
     
