@@ -16,8 +16,6 @@ from graphframes import *
 from dataloader.dataloader import sessionManager, Nodes, Weights
 from dataloader.parameters import get_parameters
 
-
-
 class Network():
     def __init__(self, session, nodes, edges):
 
@@ -113,7 +111,6 @@ if __name__ == "__main__":
     network = Network(sc, nodes_df, weights_df)
     graph_rdd = network.graph
     print(graph_rdd.vertices.show())
-
 
     parameters_rdd = sc.parallelize(get_parameters())
 
