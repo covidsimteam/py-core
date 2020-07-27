@@ -1,0 +1,34 @@
+S.No.,Users,Remarks
+1,Municipality_Admin,"- Personnel assigned by Mayor: 
+- Can assess, edit  all data
+- Monitor correctness, regularity in reporting and syncing
+- View dashboards "
+2,Municipality_Officer,"- Can assess, edit  all data
+- Upload returnees questionnaire related data (UID can be generated in this level)
+- Send  returnees identifier data whose PCR is being done to Laboratory
+- List out all positives and their identification data ; and send list to CICT team
+- Provide list of causal and close contacts  along with the associated positive case, from A form filled by cases investigator to Contact tracer
+- View dashboards"
+3,CICT_Investigator,"- Can get access to positives lists and their identification data provided by assigned officer
+- Fill up A form for positives
+- Get assess to data entered by themselves and edit them
+- Visualize Dashboards "
+4,CICT_Contact_Tracer,"- Can get assess to list of causal and close contacts along with positive cases associated to them,  provided by municipality
+- Fill up B1 form for both close and causal contacts first time and on 14th day of last contact.
+- Fill up B2 form during follow up of close contacts in between first and 14th day of last contact.
+- Set schedule and notification for follow up and last form fill up
+- Access to data collected by themselves and edit 
+- Visualize dashboards"
+5,Lab_Admin,"- Can access data entered in lab  and edit them when needed 
+- Can get access to returnees information whose sample is sent to the lab for PCR test  
+- Monitor correctness of data entry and report any problems to municipality admin.
+- Visualize dashboards"
+6,Lab_Sample_Collector,"- Fill up patients information, sample number in LAB FORMS  (UID can be generated in this level) or get access to returnees whose sample is being tested
+- Visualize dashboards"
+7,Lab_Reporter,"- Search by patient info or sample id
+- Access to patient information collected by sample collector within or outside lab and returnees  
+- Add result of PCR test of the patient (update PCR test result)
+- Visualize dashboards"
+8,Field_Sample_Collector,"- Fill up patients information, sample number, and select laboratory where the sample will be processed (UID can be generated in this level)
+- Visualize dashboards"
+9,Common_User,- Visualize dashboards
