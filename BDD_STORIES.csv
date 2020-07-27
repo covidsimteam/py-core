@@ -1,0 +1,16 @@
+User,What,Why
+Municipality_Admin,I want to moniter the records,"So I can ensure the data collection and syncing is correct, up-to-date and the whole system is funcitoning properly"
+Municipality_Officer,"I want to access, edit all data","So I can correct the mistakes, and provide access to all the other users their respective relevant data"
+Municipality_Officer,I want to generate UID and upload R1 related data,So I can assign unique identifier to each case and search the data in our server
+Municipality_Officer,I want to send the data of patients whose PCR is being done to the respective lab,So the lab can upload the PCR test results into our system
+Municipality_Officer,I want to send the positive case data to CICT team,So CICT team can investigate upon the case and follow up the contacts related to the case
+CICT_Investigator,I want to access all the positive cases and their identification data and fill up A1 form for them,So I can investigate upon the case and follow up case
+CICT_Investigator,"I want to access, edit all the data entered by me",So I can correct the mistakes
+CICT_Contact_Tracer,"I want to access the list of casual and close contact details for positive cases, get notifications for following up and fill up B1 forms (Day 0 and Day 14 for both close and casual contact) and B2 (Day 1, 4, 7, and 10 for close contact) forms",So I can follow up the contact and know if they are exposed.
+CICT_Contact_Tracer,"I want to access, edit all the data entered by me",So I can correct the mistakes
+Lab_Admin,"I want to access, edit all the data entered by my lab",So I can correct the mistakes and report them to the admin
+Lab_Admin,I want to access the data about returnees whose sample is sent to my lab for testing,So I can upload the PCR information about those samples
+Lab_Sample_Collector,"I want to access the data about returnees whose sample is sent to my lab for testing, generate UID and fill up L1 related data",So I can upload the data about sample in the system
+Lab_Reporter,I want to access the data about the patient whose sample is tested in our lab and update the PCR result of that patient,So I can upload the PCR result of samples collected inside and outside the lab into the system
+Lab_Sample_Collector,"I want to access the data about returnees whose sample is sent to my lab for testing, generate UID and fill up L1 related data",So I can upload the data about sample in the system
+,,
