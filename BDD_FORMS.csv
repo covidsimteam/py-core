@@ -1,0 +1,16 @@
+S. No.,Forms,Short Form,Remarks
+1,Questionaire for Returnees,R1,
+2,Lab-Forms,L1,"Used by sample collectors inside and outside lab, lab reporting personnel
+- UID
+- Name of Patient
+- Detailed address(ward, municipality, district, province) 
+- Phone number 
+- Gender
+- Age of patient
+- Gurdian name
+- Sample number
+- Date of sample collection
+- Report of PCR test"
+3,A Forms,A1,Case Investigator
+4,B1 Forms,B1,Contact Tracer 
+5,B1 Forms,B2,Contact Tracer 

@@ -1,0 +1,36 @@
+User,Given,When,Then
+"{Municipality_Admin, 
+Municipality_Officer, 
+CICT_Investigator, 
+CICT_Contact_Tracer, 
+Lab_Admin, 
+Lab_Sample_Collector, 
+Lab_Reporter, 
+Field_Sample_Collector,} ",the [User] is on the login page.,the [User] attempts to login with valid [User] credentials.,he/she is shown the [User] dashboard.
+"{Municipality_Admin, 
+Municipality_Officer, 
+CICT_Investigator, 
+CICT_Contact_Tracer, 
+Lab_Admin, 
+Lab_Sample_Collector, 
+Lab_Reporter, 
+Field_Sample_Collector, }",the [User] is on the login page.,the [User] attempts to login with invalid [User] credentials.,he/she is shown the appropriate error message
+"{Municipality_Admin, Municipality_Officer}",the [User] is on the [User] dashboard page.,"the [User] attempts to access R1, L1, A1, B1, and B2 related content.","he/she is granted access to select, view, and modify (add, edit, and delete) the content."
+CICT_Investigator,the [User] is on the [User] dashboard page.,the [User] attempts to access L1 related content.,he/she is granted access to view positive cases.
+CICT_Investigator,the [User] is on the [User] dashboard page.,the [User] attempts to access A1 related content.,"he/she is granted access to select, view, and modify (add, edit, and delete) the content."
+CICT_Contact_Tracer,the [User] is on the [User] dashboard page.,the [User] attempts to access A1 related content.,he/she is granted access to view the list of contacts for positive cases.
+CICT_Contact_Tracer,the [User] is on the [User] dashboard page.,"the [User] attempts to access B1, and B2 related content.","he/she is granted access to select, view, and modify (add, edit, and delete) the content."
+"{Lab_Admin, Lab_Sample_Collector}",the [User] is on the [User] dashboard page.,the [User] attempts to access R1 related content.,he/she is granted access to view the contents for the samples sent to that particular lab
+Lab_Admin,the [User] is on the [User] dashboard page.,the [User] attempts to access L1 related content.,"he/she is granted access to select, view, and modify (add, edit, and delete) the content."
+Lab_Sample_Collector,the [User] is on the [User] dashboard page.,the [User] attempts to access L1 related content.,"he/she is granted access to select, view, and add the content."
+Lab_Reporter,the [User] is on the [User] dashboard page.,the [User] attempts to access L1 related content.,"he/she is granted access to select, view, add and edit the content."
+Field_Sample_Collector,the [User] is on the [User] dashboard page.,the [User] attempts to access L1 related content.,"he/she is granted access to select, view, and add the content."
+"{Municipality_Admin, 
+Municipality_Officer, 
+CICT_Investigator, 
+CICT_Contact_Tracer, 
+Lab_Admin, 
+Lab_Sample_Collector, 
+Lab_Reporter, 
+Field_Sample_Collector, 
+Common_User}",the [User] is on the [User] dashboard page.,"the [User] attempts to visualize, and access the summaries","he/she is granted access to the visualization, graphs, figures, charts, and summaries according to their respective privilege and authorities"

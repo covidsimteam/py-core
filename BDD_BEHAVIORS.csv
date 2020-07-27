@@ -1,0 +1,31 @@
+User,Given,When,Then
+"{Municipality_Admin, 
+Municipality_Officer, 
+CICT_Investigator, 
+CICT_Contact_Tracer, 
+Lab_Admin, 
+Lab_Sample_Collector, 
+Lab_Reporter, 
+Field_Sample_Collector, 
+Common_User}",the [User] is on the [User] dashboard page.,he/she clicks the home tab,"Relevant graphs, charts, and summaries according to their respective privileges will be shown"
+"Municipality_Officer, ",the [User] is on the [User] dashboard page.,he/she clicks the upload button for R1 form,he/she will be shown the option to fill up the form or upload a csv/excel file.
+"Municipality_Officer, ",the [User] attempts to upload R1 form,he/she clicks the generate UID button,a unique identifier ID (UID) will be generated for the case
+"{Municipality_Admin, 
+Municipality_Officer, }",the [User] is on the [User] dashboard page.,he/she clicks the edit button,he/she will be given option to select and edit the data
+CICT_Investigator,the [User] is on the [User] dashboard page.,he/she clicks the view  cases button,he/she will be shown the positive cases and their information
+CICT_Investigator,the [User] is on the [User] dashboard page.,he/she clicks the upload button for L1 form,he/she will be shown the option to fill up the form or upload a csv/excel file.
+CICT_Investigator,the [User] is on the [User] dashboard page.,he/she clicks the edit button,he/she will be given option to select and edit the data entered by that particular user
+CICT_Contact_Tracer,the [User] is on the [User] dashboard page.,he/she clicks the view  cases button,he/she will be shown the close and casual contacts for the positive cases
+CICT_Contact_Tracer,the [User] is on the [User] dashboard page.,he/she clicks the upload button for B1 form,"he/she will be shown the option to fill up the form or upload a csv/excel file and notifications (for close contact: 1, 3, 7, 10 (all B2 form) and 14 (B1 form) days, and for casual contact: 14  (B1 form) days after filling up the first B1 form) will be sent to that user for following-up the case and uploading the B1/B2 form"
+CICT_Contact_Tracer,the [User] receives notification to fill up B1 form ,he/she clicks the upload button for B1 form,he/she will be shown the option to fill up the form or upload a csv/excel file
+CICT_Contact_Tracer,the [User] receives notification to fill up B2 form ,he/she clicks the upload button for B2 form,he/she will be shown the option to fill up the form or upload a csv/excel file
+CICT_Contact_Tracer,the [User] is on the [User] dashboard page.,he/she clicks the edit button,he/she will be given option to select and edit the data entered by that particular user
+Lab_Admin,the [User] is on the [User] dashboard page.,he/she clicks the view button,he/she will be shown the returnee information whose sample is sent to that lab for PCR test
+Lab_Admin,the [User] is on the [User] dashboard page.,he/she clicks the edit button,he/she will be given option to select and edit the data entered by that particular lab
+Lab_Admin,the [User] is on the [User] dashboard page.,he/she clicks the report button,he/she will be shown the data entered in that lab and asked to select the data to be reported along with a message.
+Lab_Sample_Collector,the [User] is on the [User] dashboard page.,he/she clicks the upload button for L1 form,he/she will be shown an option to enter a new entry or select an existing returnee case
+Lab_Sample_Collector,the [User] attempts to upload L1 form,he/she clicks the new entry button,a unique identifier ID (UID) will be generated for the case and he/she will be shown the option to fill up the form or upload a csv/excel file.
+Lab_Sample_Collector,the [User] attempts to upload L1 form,he/she clicks existing returnee button, he/she will be shown the option to select the case and fill up the form or upload a csv/excel file.
+Lab_Reporter,the [User] is on the [User] dashboard page.,he/she clicks the search button,he/she will be shown the patient information for that lab based on entered patient info or UID
+Lab_Reporter,the [User] is on the [User] dashboard page.,he/she clicks the update result button,he/she will be shown the patient information of that lab and a button to toggle the case result
+Field_Sample_Collector,the [User] is on the [User] dashboard page.,he/she clicks the new entry button,a unique identifier ID (UID) will be generated for the case and he/she will be shown the option to fill up the form or upload a csv/excel file along with the lab information where the sample will be tested.
