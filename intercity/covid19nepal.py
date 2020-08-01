@@ -20,7 +20,7 @@ import matplotlib
 import datetime
 
 from data_loader.dataloader import Nodes, Weights, sessionManager
-from data_loader.parameters import get_parameters
+from data_loader.parameters import get_parameters, get_unique_id
 # from data_loader.plot_map import plot_map
 # from data_loader.make_folium import make_folium
 
@@ -140,10 +140,24 @@ if __name__ == "__main__":
 
     print(xt, xt.shape)
 
-    results = nodes_df
-    for day in range(simuwindow):
-        results["x"+str(day)] = xt[day]
-    # print(results.head(10))
+    output = {}
+    districts_list = []
+    for _, v in nodes_df.iterrows():
+        districts = {}
+        districts["id"] = v["id"]
+        districts["Districts"] = v["Districts"]
+        districts["Headquarter"] = v["Headquarter"]
+        districts["longitude"] = v["longitude"]
+        districts["latitude"] = v["latitude"]
+        districts["province"] = v["province"]
+        districts["health_index"] = v["health_index"]
+        districts["results"] = xt[:][v["id"]]
+        districts_list.append(districts)
+    
+    output["_id"] = "intercity_results"
+    output["_unique_id"] = get_unique_id
+    output["parameters"] = parameters
+    output["districts"] = districts_list
 
     #submit code here
     

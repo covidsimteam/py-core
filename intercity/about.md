@@ -10,5 +10,22 @@ The disaster spread model is based on (Buzna 2007). We represent a geograpahical
 
 The time dynamics of the disease spread is modeled by the following equation,
 
-![Intercity Model Equation](./equation1.png)
+![Intercity Model Equation](./figures/equation1.png)
 
+## Data Used
+
+1. District Data:
+    - District Name, Headquarters, Geo Coordinates, and Health_Index.
+
+2. Mobility Data:
+    - Mobility of people from one district to another in one day.
+
+## Graph Parameters
+
+1. Healing parameter for a node.
+![tau](./figures/tau.PNG)
+
+2. Mobility parameter for an edge.
+![mobility](./figures/mobility.PNG)
+
+The details about the input and output apis can be found [here](intercity_api.json).

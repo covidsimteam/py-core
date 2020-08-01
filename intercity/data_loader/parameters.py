@@ -8,8 +8,11 @@ def get_parameters():
     parameters["theta"] = 10
     parameters["a"] = 4.0
     parameters["b"] = 3.0
-
+    parameters["function"] = "errf"
     parameters["samples"] = 100
     parameters["simwindow"] = 100
 
     return parameters
+
+def get_unique_id():
+    return "this-is-unique-id"

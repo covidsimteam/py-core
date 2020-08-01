@@ -144,3 +144,4 @@ src/jobs/intercity-model/dataloader/credintials.py
 **/shapefiles/
 **/**.zip
 **.zip
+**/.vscode
