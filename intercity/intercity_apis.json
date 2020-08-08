@@ -205,8 +205,7 @@
                                 "type": "object",
                                 "$ref": "#/components/schemas/intercity_results",
                                 "example": {
-                                    "_id": "intercity_results",
-                                    "_unique_id": "202000730123246423",
+                                    "_id": "unique_key",
                                     "parameters": {
                                         "nc_tau": 1,
                                         "nc_M": 1,
@@ -217,8 +216,8 @@
                                         "a": 4,
                                         "b": 5,
                                         "function": "errf",
-                                        "samples": 100,
-                                        "simwindow": 100
+                                        "samples": 3,
+                                        "simwindow": 3
                                     },
                                     "districts":{
                                         "id":0,
