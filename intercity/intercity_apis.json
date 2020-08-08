@@ -1,0 +1,786 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "title": "API Documentation for Intercity Model",
+        "description": "This document provides the information of APIs used by Intercity Model",
+        "contact": "aayush.kafle@naamii.org.np",
+        "lisence": "---->Will be added later",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+        "url": "http://110.34.5.9:5984",
+        "description": "Central data server"
+    }], 
+    "paths": {
+        "/covidsimteam/districts": {
+            "get": {
+                "operationId": "getAllDist",
+                "summary": "Get data of every district",
+                "responses": {
+                    "200": {
+                        "description": "A JSON array of data of every district",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/district",
+                                    "example": {
+                                        "_id":"districts",
+                                        "_rev":"2-388b5f5bb05d393e4c223517cefa2b6d",
+                                        "districts":[
+                                            {
+                                                "index":0,
+                                                "Districts":"KANCHANPUR",
+                                                "Headquarter":"Kanchanpur",
+                                                "longitude":80.28335595,
+                                                "latitude":28.84396525,
+                                                "province":7
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/covidsimteam/provinces": {
+            "get": {
+                "operationId": "getAllProv",
+                "summary": "Get data of every province",
+                "responses": {
+                    "200": {
+                        "description": "A JSON array of data of every province",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/province",
+                                    "example": {
+                                        "_id": "provinces",
+                                        "_rev": "1-135983acdc27971db04f9a498e05d338",
+                                        "provinces": [
+                                            {
+                                                "Name of Government Unit": "Province 1",
+                                                "Hospital": 18,
+                                                "Primary Health Care Centers": 40,
+                                                "Health Post": 648,
+                                                "Urban Health Centers": 52,
+                                                "Community Health Unit": 49,
+                                                "Other Health Facilities": 9,
+                                                "Non-public health facilities": 136,
+                                                "Total health facilities (Public and Non-Public)": 952,
+                                                "No of beds": 500,
+                                                "Area": 25905,
+                                                "Pop": 4534943,
+                                                "density": 175.0605289,
+                                                "Index": 0.198458944
+                                            }
+                                        ]
+                                        
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/covidsimteam/district_distances": {
+            "get": {
+                "operationId": "getAllDist",
+                "summary": "Get data of road distance between one district to another",
+                "responses": {
+                    "200": {
+                        "description": "A JSON array of data of distance",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/district_distance",
+                                    "example": {
+                                        "_id":"district_distances",
+                                        "_rev":"1-529e871f2b1cc4c2e83dd927a11b037f",
+                                        "district_distances":[
+                                            {
+                                                "Districts":"KANCHANPUR",
+                                                "KANCHANPUR":0,
+                                                "KAILALI":60.0288,
+                                                "DARCHULA":253.1824,
+                                                "DOTI":196.012,
+                                                "DADELDHURA":106.4044,
+                                                "BAJHANG":266.6951,
+                                                "BAJURA":316.2295,
+                                                "BAITADI":196.0479,
+                                                "ACHHAM":310.2332,
+                                                "RUKUM_W":440.805,
+                                                "SALYAN":357.8837,
+                                                "MUGU":585.9603,
+                                                "KALIKOT":440.8685,
+                                                "JUMLA":527.9746,
+                                                "JAJARKOT":371.8328,
+                                                "HUMLA":1450.671,
+                                                "DOLPA":522.62,
+                                                "DAILEKH":354.9657,
+                                                "SURKHET":283.9119,
+                                                "PYUTHAN":392.9098,
+                                                "PALPA":474.3199,
+                                                "NAWALPARASI_W":472.942,
+                                                "KAPILBASTU":402.7648,
+                                                "GULMI":500.0895,
+                                                "DANG":334.9068,
+                                                "BARDIYA":177.7351,
+                                                "RUPANDEHI":428.6248,
+                                                "BANKE":214.9861,
+                                                "RUKUM_E":469.6849,
+                                                "ARGHAKHANCHI":455.0159,
+                                                "ROLPA":440.0231,
+                                                "PARBAT":645.6855,
+                                                "NAWALPARASI_E":520.3946,
+                                                "MYAGDI":676.3859,
+                                                "MUSTANG":741.2657,
+                                                "MANANG":702.8885,
+                                                "LAMJUNG":652.4978,
+                                                "KASKI":592.5359,
+                                                "GORKHA":612.7455,
+                                                "TANAHU":627.6954,
+                                                "BAGLUNG":580.0468,
+                                                "SYANGJA":556.5845,
+                                                "NUWAKOT":677.2439,
+                                                "MAKAWANPUR":627.5621,
+                                                "LALITPUR":696.8151,
+                                                "KABHREPALANCHOK":724.36,
+                                                "KATHMANDU":696.3769,
+                                                "DOLAKHA":866.0515,
+                                                "DHADING":644.6948,
+                                                "CHITAWAN":551.8468,
+                                                "BHAKTAPUR":708.3662,
+                                                "RAMECHHAP":823.397,
+                                                "RASUWA":720.9656,
+                                                "SINDHULI":793.4589,
+                                                "SINDHUPALCHOK":777.9797,
+                                                "SIRAHA":918.135,
+                                                "SARLAHI":835.7826,
+                                                "SAPTARI":982.3184,
+                                                "RAUTAHAT":802.2826,
+                                                "PARSA":679.4831,
+                                                "MAHOTTARI":834.3881,
+                                                "DHANUSHA":853.4251,
+                                                "BARA":683.1185,
+                                                "SANKHUWASABHA":1181.4724,
+                                                "PANCHTHAR":1251.6169,
+                                                "MORANG":1023.9854,
+                                                "OKHALDHUNGA":1036.381,
+                                                "KHOTANG":1064.86,
+                                                "JHAPA":1143.2049,
+                                                "TERHATHUM":1157.1154,
+                                                "UDAYAPUR":998.0121,
+                                                "ILAM":1177.2717,
+                                                "TAPLEJUNG":1323.378,
+                                                "DHANKUTA":1097.8307,
+                                                "SUNSARI":1010.0902,
+                                                "BHOJPUR":1196.1083,
+                                                "SOLUKHUMBU":1078.5389
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/models/intercity_results": {
+            "post": {
+                "operationId": "postIntercityResult",
+                "summary": "Post result for each district",
+                "requestBody": {
+                    "description": "A JSON array of data and results of every districts",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "$ref": "#/components/schemas/intercity_results",
+                                "example": {
+                                    "_id": "unique_key",
+                                    "parameters": {
+                                        "nc_tau": 1,
+                                        "nc_M": 1,
+                                        "sigma": 25,
+                                        "alpha": 0.1,
+                                        "beta": 0.01,
+                                        "theta": 10,
+                                        "a": 4,
+                                        "b": 5,
+                                        "function": "errf",
+                                        "samples": 3,
+                                        "simwindow": 3
+                                    },
+                                    "districts":{
+                                        "id":0,
+                                        "Districts":"KANCHANPUR",
+                                        "Headquarter":"Kanchanpur",
+                                        "longitude":80.28335595,
+                                        "latitude":28.84396525,
+                                        "province":7,
+                                        "health_index":0.274239,
+                                        "results":[
+                                            0.1,
+                                            0.123,
+                                            0.456
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201":{
+                        "description": "Results added"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "district": {
+                "type": "object",
+                "properties": {
+                    "_id": {
+                        "type": "string"
+                    },
+                    "_rev": {
+                        "type": "string"
+                    },
+                    "districts": {
+                        "type": "array",
+                        "items": {
+                            "index":{
+                                "type": "integer",
+                                "format": "int64"
+                            },
+                            "Districts":{
+                                "type": "string"
+                            },
+                            "Headquarter":{
+                                "type": "string"
+                            },
+                            "longidute":{
+                                "type": "number",
+                                "format": "double"
+                            },
+                            "latitude":{
+                                "type": "number",
+                                "format": "double"
+                            },
+                            "province":{
+                                "type": "integer",
+                                "format": "int64"
+                            }
+                        }
+                    }
+                }
+            },
+            "province": {
+                "type": "object",
+                "properties": {
+                    "_id": {
+                        "type": "string"
+                    },
+                    "_rev": {
+                        "type": "string"
+                    },
+                    "provinces": {
+                        "type": "array",
+                        "items": {
+                            "Name of Government Unit": {
+                                "type": "string"
+                            },
+                            "Hospital": {
+                                "type": "integer",
+                                "format": "int64"
+                            },
+                            "Primary Health Care Centers": {
+                                "type": "integer",
+                                "format": "int64"
+                            },
+                            "Health Post": {
+                                "type": "integer",
+                                "format": "int64"
+                            },
+                            "Urban Health Centers": {
+                                "type": "integer",
+                                "format": "int64"
+                            },
+                            "Community Health Unit": {
+                                "type": "integer",
+                                "format": "int64"
+                            },
+                            "Other Health Facilities": {
+                                "type": "integer",
+                                "format": "int64"
+                            },
+                            "Non-public health facilities": {
+                                "type": "integer",
+                                "format": "int64"
+                            },
+                            "Total health facilities (Public and Non-Public)": {
+                                "type": "integer",
+                                "format": "int64"
+                            },
+                            "No of beds": {
+                                "type": "integer",
+                                "format": "int64"
+                            },
+                            "Area": {
+                                "type": "integer",
+                                "format": "int64"
+                            },
+                            "Pop": {
+                                "type": "integer",
+                                "format": "int64"
+                            },
+                            "density": {
+                                "type": "number",
+                                "format": "float"
+                            },
+                            "Index": {
+                                "type": "number",
+                                "format": "double"
+                            }
+                        }
+                    }
+                }
+            },
+            "district_distance": {
+                "type": "object",
+                "properties": {
+                    "_id": {
+                        "type": "string"
+                    },
+                    "_rev": {
+                        "type": "string"
+                    },
+                    "district_distances": {
+                        "type": "array",
+                        "items": {
+                                "Districts":{
+                                    "type":"string"
+                                },
+                                "KANCHANPUR": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "KAILALI": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "DARCHULA": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "DOTI": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "DADELDHURA": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "BAJHANG": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "BAJURA": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "BAITADI": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "ACHHAM": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "RUKUM_W": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "SALYAN": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "MUGU": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "KALIKOT": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "JUMLA": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "JAJARKOT": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "HUMLA": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "DOLPA": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "DAILEKH": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "SURKHET": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "PYUTHAN": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "PALPA": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "NAWALPARASI_W": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "KAPILBASTU": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "GULMI": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "DANG": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "BARDIYA": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "RUPANDEHI": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "BANKE": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "RUKUM_E": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "ARGHAKHANCHI": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "ROLPA": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "PARBAT": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "NAWALPARASI_E": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "MYAGDI": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "MUSTANG": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "MANANG": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "LAMJUNG": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "KASKI": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "GORKHA": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "TANAHU": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "BAGLUNG": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "SYANGJA": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "NUWAKOT": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "MAKAWANPUR": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "LALITPUR": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "KABHREPALANCHOK": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "KATHMANDU": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "DOLAKHA": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "DHADING": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "CHITAWAN": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "BHAKTAPUR": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "RAMECHHAP": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "RASUWA": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "SINDHULI": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "SINDHUPALCHOK": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "SIRAHA": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "SARLAHI": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "SAPTARI": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "RAUTAHAT": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "PARSA": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "MAHOTTARI": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "DHANUSHA": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "BARA": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "SANKHUWASABHA": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "PANCHTHAR": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "MORANG": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "OKHALDHUNGA": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "KHOTANG": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "JHAPA": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "TERHATHUM": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "UDAYAPUR": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "ILAM": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "TAPLEJUNG": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "DHANKUTA": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "SUNSARI": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "BHOJPUR": {
+                                "type": "number",
+                                "format": "double"
+                                },
+                                "SOLUKHUMBU": {
+                                "type": "number",
+                                "format": "double"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "intercity_results": {
+                "type": "object",
+                "properties": {
+                    "_id": {
+                        "type": "intercity_results"
+                    },
+                    "_unique_id": {
+                        "type": "string"
+                    },
+                    "parameters": {
+                        "type": "object",
+                        "properties": {
+                            "nc_tau":{
+                                "type": "number",
+                                "format": "double"
+                            },
+                            "nc_M":{
+                                "type": "number",
+                                "format": "double"
+                            },
+                            "sigma":{
+                                "type": "number",
+                                "format": "double"
+                            },
+                            "alpha":{
+                                "type": "number",
+                                "format": "double"
+                            },
+                            "beta":{
+                                "type": "number",
+                                "format": "double"
+                            },
+                            "theta":{
+                                "type": "number",
+                                "format": "double"
+                            },
+                            "a":{
+                                "type": "integer",
+                                "format": "int64"
+                            },
+                            "b":{
+                                "type": "integer",
+                                "format": "int64"
+                            },
+                            "function":{
+                                "type":"string"
+                            },
+                            "samples":{
+                                "type": "integer",
+                                "format": "int64"
+                            },
+                            "simwindow":{
+                                "type": "integer",
+                                "format": "int64"
+                            }
+                        }
+                    },
+                    "districts":{
+                        "type": "array",
+                        "items": {
+                            "index":{
+                                "type": "integer",
+                                "format": "int64"
+                            },
+                            "Districts":{
+                                "type": "string"
+                            },
+                            "Headquarter":{
+                                "type": "string"
+                            },
+                            "longidute":{
+                                "type": "number",
+                                "format": "double"
+                            },
+                            "latitude":{
+                                "type": "number",
+                                "format": "double"
+                            },
+                            "province":{
+                                "type": "integer",
+                                "format": "int64"
+                            },
+                            "health_index":{
+                                "type": "number",
+                                "format": "double"
+                            },
+                            "results":{
+                                "type":"array",
+                                "items": {
+                                    "type": "number",
+                                    "format": "double"
+                                }
+                            }
+                        }
+                    }    
+                }
+            }
+        }
+    }

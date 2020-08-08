@@ -18,9 +18,10 @@ import shapefile as shp
 import seaborn as sns
 import matplotlib
 import datetime
+from pycouchdb.feedreader import BaseFeedReader
 
 from data_loader.dataloader import Nodes, Weights, sessionManager
-from data_loader.parameters import get_parameters
+from data_loader.backend import get_parameters, couchServer
 # from data_loader.plot_map import plot_map
 # from data_loader.make_folium import make_folium
 
@@ -29,6 +30,9 @@ import myargparse as argparse
 parser = argparse.MyArgumentParser(description='infects node')
 parser.add_argument('-nodeinfect',default=6,type=int,help='nodeinfect')
 args = parser.parse_args()
+
+couchdb = True
+couchserver = couchServer()
 
 class diseasespread():
     """parameters for the model"""
@@ -54,13 +58,14 @@ class diseasespread():
         self.sigma = parameters["sigma"]
         self.a = parameters["a"]
         self.b = parameters["b"]
+        self.function = parameters["function"]
 
     def tau(self, node):
         return(self.nc_tau*14*self.health_index[node])
 
     def sigmoid(self, x):
         """two different functions for the disturbances the neighboring nodes creates towards node i"""
-        if 1:
+        if self.function == "errf":
             return erf((x)/(self.sigma)) #newly discovered (inspired by a quantum computing research). sigma could be different for every node
         else:
             return (1-np.exp(-self.alpha*x))/(1+np.exp(-self.alpha*(x-self.theta))) #DOI: 10.1103/PhysRevE.75.056107
@@ -106,7 +111,7 @@ class diseasespread():
                 dxdt[i] = -x[i] / self.tau(i) + self.sigmoid(np.sum(xj * np.array(self.M(i)) * np.exp(-self.beta * np.array(self.Delay(i)),dtype=float) / np.array((self.f(i)),dtype=float)))
         return dxdt
 
-if __name__ == "__main__":
+def calculate(parameters_obj):
 
     plot = False
     #create an object of Links
@@ -126,7 +131,7 @@ if __name__ == "__main__":
     weights = Weights(AuthToken.get_token(), nodeobject.get_index())
     weights_df = weights.weights()
 
-    parameters = get_parameters()
+    parameters = parameters_obj["parameters"]
     
     assert N == len(nodes_df)
 
@@ -138,12 +143,30 @@ if __name__ == "__main__":
     t=np.linspace(0,simuwindow,samples)
     xt=odeint(spread.evolve,x0,t)
 
-    print(xt, xt.shape)
+    # print(xt, xt.shape)
 
-    results = nodes_df
-    for day in range(simuwindow):
-        results["x"+str(day)] = xt[day]
-    # print(results.head(10))
+    output = {}
+    districts_list = []
+    for _, v in nodes_df.iterrows():
+        districts = {}
+        districts["id"] = v["id"]
+        districts["Districts"] = v["Districts"]
+        districts["Headquarter"] = v["Headquarter"]
+        districts["longitude"] = v["longitude"]
+        districts["latitude"] = v["latitude"]
+        districts["province"] = v["province"]
+        districts["health_index"] = v["health_index"]
+        districts["results"] = xt[:,v["id"]].tolist()
+        districts_list.append(districts)
+    
+    output["_id"] = parameters_obj["_id"]
+    output["parameters"] = parameters
+    output["districts"] = districts_list
+
+    # print(output)
+    # print(type(output))
+    save_msg = couchserver.save(output)
+    print("New results saved, find results at : ", save_msg["_id"])
 
     #submit code here
     
@@ -221,3 +244,32 @@ if __name__ == "__main__":
             plt.savefig('results/districts_road/map1/covid000'+str(int(int(day)))+'.png')
 
 #ffmpeg -r 0.5 -f image2 -s 1920x1080 -i covid%04d.png -vcodec libx264 -crf 25  -pix_fmt yuv420p covidlatest.mp4 #run from the terminal
+
+class feed_reader(BaseFeedReader):
+    def on_message(self, message):
+        print("New change detected")
+        print(message)
+        if "seq" in message:
+            couchserver.write(message["seq"])
+
+        if not "deleted" in message:
+            print("----------got new parameters-------------")
+            parameters_obj = couchserver.db_dashboard.get(message["id"])
+            print(parameters_obj)
+            calculate(parameters_obj)
+
+        else:
+            print("deleted message------>")
+    
+    def on_close(self):
+        print("feed closed--------->")
+
+
+if __name__ == "__main__":
+    if couchdb:
+        if couchserver.last_seq:
+            couchserver.changes_feed(feed_reader(),feed="continuous",heartbeat=1000,since=couchserver.last_seq)
+        else:
+            couchserver.changes_feed(feed_reader(),feed="continuous",heartbeat=1000)            
+    else:
+        parameters_obj = get_parameters()
