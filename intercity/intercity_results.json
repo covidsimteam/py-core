@@ -1,0 +1,35 @@
+{
+    "_id": "31dfd06f239cd1804189aed82c004fdf",
+    "_rev": "1-fa761a36fe11d257fbe930f77b52423c",
+    "parameters": {
+      "nc_tau": 1,
+      "nc_M": 1,
+      "sigma": 25,
+      "alpha": 0.1,
+      "beta": 0.01,
+      "theta": 10,
+      "a": 4,
+      "b": 5,
+      "function": "sigmoid",
+      "samples": 100,
+      "simwindow": 100
+    },
+    "districts": [
+      {
+        "id": 0,
+        "Districts": "KANCHANPUR",
+        "Headquarter": "Kanchanpur",
+        "longitude": 80.28335595,
+        "latitude": 28.84396525,
+        "province": 7,
+        "health_index": 0.274239114,
+        "results": [
+          0,
+          0.0010734731728802352,
+          0.0035884625801451825,
+          0.008037487820525971,
+          0.015602256958857572
+        ]
+    }
+    ]
+}
