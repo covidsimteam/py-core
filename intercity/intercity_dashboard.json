@@ -1,0 +1,17 @@
+{
+    "_id": "31dfd06f239cd1804189aed82c004fdf",
+    "_rev": "1-76b3c25166e63047dd20763be5287693",
+    "parameters": {
+      "nc_tau": 1,
+      "nc_M": 1,
+      "sigma": 25,
+      "alpha": 0.1,
+      "beta": 0.01,
+      "theta": 10,
+      "a": 4,
+      "b": 5,
+      "function": "sigmoid",
+      "samples": 100,
+      "simwindow": 100
+    }
+  }
