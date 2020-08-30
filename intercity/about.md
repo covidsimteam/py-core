@@ -28,4 +28,4 @@ The time dynamics of the disease spread is modeled by the following equation,
 2. Mobility parameter for an edge.
 ![mobility](./figures/mobility.PNG)
 
-The details about the input and output apis can be found [here](intercity_api.json).
+The details about the input and output apis can be found [here](intercity_apis.json).
